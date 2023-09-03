@@ -178,7 +178,7 @@ return (
                   bgcolor: (theme) => theme.palette.boxBackground.main,
                   borderRadius: 2,
                   width: 150,
-                  height: 75,
+                  height: 80,
                 }}
               >
 <Typography variant="body1" component="p" align="center">
@@ -194,6 +194,7 @@ return (
                   borderRadius: 2,
                   width: 150,
                   height: 75,
+                  marginBottom: 1
                 }}
               >
                 <Typography variant="body1" component="p" align="center">
