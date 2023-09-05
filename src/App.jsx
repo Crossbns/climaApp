@@ -13,6 +13,9 @@ const API_WEATHER = `http://api.weatherapi.com/v1/current.json?key=${
 
 
 const darkTheme = createTheme({
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+  },
   palette: {
     mode: 'dark',
     primary: {
@@ -31,6 +34,9 @@ const darkTheme = createTheme({
 });
 
 const lightTheme = createTheme({
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+  },
   palette: {
     mode: 'light',
     primary: {
@@ -125,9 +131,15 @@ return (
     </Box>
 
     <Container maxWidth="xs" sx={{ mt: 2 }}>
-      <Typography variant="h3" component="h1" align="center" gutterBottom>
-        Aplicación del Clima
-      </Typography>
+    <Typography
+  variant="h3"
+  component="h1"
+  align="center"
+  gutterBottom
+  sx={{ fontWeight: 'bold', fontSize: '3rem' }}
+>
+  Aplicación del Clima
+</Typography>
       <Box
         sx={{ display: 'grid', gap: 2 }}
         component="form"
@@ -146,14 +158,15 @@ return (
           helperText={error.message}
         />
 
-        <LoadingButton
-          type="submit"
-          variant="contained"
-          loading={loading}
-          loadingIndicator="Buscando..."
-        >
-          Buscar
-        </LoadingButton>
+<LoadingButton
+  type="submit"
+  variant="contained"
+  loading={loading}
+  loadingIndicator="Buscando..."
+  sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+>
+  Buscar
+</LoadingButton>
       </Box>
 
       {weather.city && (
