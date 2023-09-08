@@ -78,19 +78,26 @@ export default function App() {
     e.preventDefault();
     setError({ error: false, message: "" });
     setLoading(true);
-
+  
     try {
       if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
-
-      const res = await fetch(API_WEATHER + city);
+  
+      const res = await fetch(API_WEATHER + city, {
+        method: 'GET',
+        headers: {
+          'Origin': 'https://clima-app77d472.netlify.app',
+          'Access-Control-Request-Method': 'GET'
+        }
+      });
+      
       const data = await res.json();
-
+  
       if (data.error) {
         throw { message: data.error.message };
       }
-
+  
       console.log(data);
-
+  
       setWeather({
         city: data.location.name,
         country: data.location.country,
@@ -108,6 +115,7 @@ export default function App() {
       setLoading(false);
     }
   };
+  
 
 return (
   <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
