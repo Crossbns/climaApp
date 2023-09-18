@@ -95,10 +95,11 @@ export default function App() {
         city: data.location.name,
         country: data.location.country,
         temperature: data.current.temp_c,
-        condition: data.current.condition.code,
         conditionText: data.current.condition.text,
         icon: data.current.condition.icon,
-      });
+        windSpeed: data.current.wind_kph,
+        uvIndex: data.current.uv,
+      })
     } catch (error) {
       console.log(error);
       setError({ error: true, message: error.message });
