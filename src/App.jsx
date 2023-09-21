@@ -99,7 +99,8 @@ export default function App() {
         icon: data.current.condition.icon,
         windSpeed: data.current.wind_kph,
         uvIndex: data.current.uv,
-      })
+      });
+      
     } catch (error) {
       console.log(error);
       setError({ error: true, message: error.message });
@@ -109,142 +110,138 @@ export default function App() {
   };
   
 
-return (
-  <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-    <CssBaseline />
-
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'flex',
-        marginLeft: 'auto',
-        ml: 130,
-      }}
-    >
-      <LoadingButton onClick={toggleTheme}>
-        {theme === 'dark' ? (
-          <Brightness7Icon fontSize="large" />
-        ) : (
-          <Brightness4Icon fontSize="large" />
-        )}
-      </LoadingButton>
-    </Box>
-
-    <Container maxWidth="xs" sx={{ mt: 2 }}>
-    <Typography
-  variant="h3"
-  component="h1"
-  align="center"
-  gutterBottom
-  sx={{ fontWeight: 'bold', fontSize: '3rem' }}
->
-  Aplicación del Clima
-</Typography>
+  return (
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <CssBaseline />
+  
       <Box
-        sx={{ display: 'grid', gap: 2 }}
-        component="form"
-        autoComplete="off"
-        onSubmit={onSubmit}
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          ml: { xs: 2, sm: 3, md: 4, lg: 5, xl: 6 },
+        }}
       >
-        <TextField
-          id="city"
-          label="Ciudad"
-          variant="outlined"
-          size="small"
-          required
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          error={error.error}
-          helperText={error.message}
-        />
-
-<LoadingButton
-  type="submit"
-  variant="contained"
-  loading={loading}
-  loadingIndicator="Buscando..."
-  sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}
->
-  Buscar
-</LoadingButton>
+        <LoadingButton onClick={toggleTheme}>
+          {theme === 'dark' ? (
+            <Brightness7Icon fontSize="large" />
+          ) : (
+            <Brightness4Icon fontSize="large" />
+          )}
+        </LoadingButton>
       </Box>
-
-      {weather.city && (
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h4" component="h2" align="center">
-            {weather.city}, {weather.country}
-          </Typography>
-          <Box
-            component="img"
-            alt={weather.conditionText}
-            src={weather.icon}
-            sx={{ display: 'block', margin: '0 auto' }}
+  
+      <Container maxWidth="xs" sx={{ mt: 2 }}>
+        <Typography
+          variant="h3"
+          component="h1"
+          align="center"
+          gutterBottom
+          sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}
+        >
+          Aplicación del Clima
+        </Typography>
+        <Box
+          sx={{ display: 'grid', gap: 2 }}
+          component="form"
+          autoComplete="off"
+          onSubmit={onSubmit}
+        >
+          <TextField
+            id="city"
+            label="Ciudad"
+            variant="outlined"
+            size="small"
+            required
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            error={error.error}
+            helperText={error.message}
           />
-          <Typography variant="h5" component="h3" align="center">
-            {weather.temperature} °C
-          </Typography>
-          <Grid container spacing={10}>
-            <Grid item xs={4}>
-              <Box
-                sx={{
-                  p: 1,
-                  bgcolor: (theme) => theme.palette.boxBackground.main,
-                  borderRadius: 2,
-                  width: 150,
-                  height: 80,
-                }}
-              >
-<Typography variant="body1" component="p" align="center">
-  <strong style={{ textDecoration: 'underline' }}>Condición</strong>: {weather.conditionText}
-</Typography>
-            </Box>
-            </Grid>
-            <Grid item xs={4}>
-              <Box
-                sx={{
-                  p: 1,
-                  bgcolor: (theme) => theme.palette.boxBackground.main,
-                  borderRadius: 2,
-                  width: 150,
-                  height: 75,
-                  marginBottom: 1
-                }}
-              >
-                <Typography variant="body1" component="p" align="center">
-                  <strong style={{ textDecoration: 'underline' }}>Velocidad del viento</strong>: {weather.windSpeed} km/h
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={4}>
-              <Box
-                sx={{
-                  p: 1,
-                  bgcolor: (theme) => theme.palette.boxBackground.main,
-                  borderRadius: 2,
-                  width: 150,
-                  height: 75,
-                }}
-              >
-                <Typography variant="body1" component="p" align="center">
-                 <strong style={{ textDecoration: 'underline' }}>Índice UV</strong>: {weather.uvIndex}
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+  
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            loading={loading}
+            loadingIndicator="Buscando..."
+            sx={{ fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' }, fontWeight: 'bold' }}
+          >
+            Buscar
+          </LoadingButton>
         </Box>
-      )}
-
-      <Typography textAlign="center" sx={{ mt: 2, fontSize: '10px' }}>
-        Powered by:{' '}
-        <a href="<URL>" title="<URL>">
-          WeatherAPI.com
-        </a>
-      </Typography>
-    </Container>
-  </ThemeProvider>
-);
-
-
-
-
-}
+  
+        {weather.city && (
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="h4" component="h2" align="center">
+              {weather.city}, {weather.country}
+            </Typography>
+            <Box
+              component="img"
+              alt={weather.conditionText}
+              src={weather.icon}
+              sx={{ display: 'block', margin: '0 auto' }}
+            />
+            <Typography variant="h5" component="h3" align="center">
+              {weather.temperature} °C
+            </Typography>
+            <Grid container spacing={10}>
+              <Grid item xs={12} sm={4}>
+                <Box
+                  sx={{
+                    p: 1,
+                    bgcolor: (theme) => theme.palette.boxBackground.main,
+                    borderRadius: 2,
+                    width: { xs: '100%', sm: 150 },
+                    height: { xs: 100, sm: 80 },
+                  }}
+                >
+                  <Typography variant="body1" component="p" align="center">
+                    <strong style={{ textDecoration: 'underline' }}>Condición</strong>: {weather.conditionText}
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Box
+                  sx={{
+                    p: 1,
+                    bgcolor: (theme) => theme.palette.boxBackground.main,
+                    borderRadius: 2,
+                    width: { xs: '100%', sm: 150 },
+                    height:{ xs: 100, sm: 75 },
+                    marginBottom:{ xs: 1, sm:'auto' }
+                  }}
+                >
+                  <Typography variant="body1" component="p" align="center">
+                    <strong style={{ textDecoration: 'underline' }}>Velocidad del viento</strong>: {weather.windSpeed} km/h
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Box
+                  sx={{
+                    p: 1,
+                    bgcolor:(theme) => theme.palette.boxBackground.main,
+                    borderRadius: 2,
+                    width:{ xs:'100%', sm :150 },
+                    height:{ xs :100, sm :75 }
+                  }}
+                >
+                  <Typography variant="body1" component="p" align="center">
+                   <strong style={{ textDecoration:'underline' }}>Índice UV</strong>: {weather.uvIndex}
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        )}
+  
+        <Typography textAlign='center' sx={{ mt :2, fontSize:{ xs:'8px', sm:'10px' } }}>
+          Powered by:{' '}
+          <a href="<URL>" title="<URL>">
+            WeatherAPI.com
+          </a>
+        </Typography>
+      </Container>
+    </ThemeProvider>
+  );
+                
+}  
