@@ -138,7 +138,7 @@ export default function App() {
           gutterBottom
           sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}
         >
-          Aplicación del Clima
+          Weather App
         </Typography>
         <Box
           sx={{ display: 'grid', gap: 2 }}
@@ -148,7 +148,7 @@ export default function App() {
         >
           <TextField
             id="city"
-            label="Ciudad"
+            label="City"
             variant="outlined"
             size="small"
             required
@@ -162,10 +162,10 @@ export default function App() {
             type="submit"
             variant="contained"
             loading={loading}
-            loadingIndicator="Buscando..."
+            loadingIndicator="Searching..."
             sx={{ fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' }, fontWeight: 'bold' }}
           >
-            Buscar
+            Search
           </LoadingButton>
         </Box>
   
@@ -195,7 +195,7 @@ export default function App() {
                   }}
                 >
                   <Typography variant="body1" component="p" align="center">
-                    <strong style={{ textDecoration: 'underline' }}>Condición</strong>: {weather.conditionText}
+                    <strong style={{ textDecoration: 'underline' }}>Condition</strong>: {weather.conditionText}
                   </Typography>
                 </Box>
               </Grid>
@@ -211,7 +211,7 @@ export default function App() {
                   }}
                 >
                   <Typography variant="body1" component="p" align="center">
-                    <strong style={{ textDecoration: 'underline' }}>Velocidad del viento</strong>: {weather.windSpeed} km/h
+                    <strong style={{ textDecoration: 'underline' }}>Wind Speed</strong>: {weather.windSpeed} km/h
                   </Typography>
                 </Box>
               </Grid>
@@ -226,7 +226,7 @@ export default function App() {
                   }}
                 >
                   <Typography variant="body1" component="p" align="center">
-                   <strong style={{ textDecoration:'underline' }}>Índice UV</strong>: {weather.uvIndex}
+                   <strong style={{ textDecoration:'underline' }}>UV Index</strong>: {weather.uvIndex}
                   </Typography>
                 </Box>
               </Grid>
