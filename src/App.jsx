@@ -11,7 +11,7 @@ const API_WEATHER = `https://api.weatherapi.com/v1/current.json?key=${
   import.meta.env.VITE_API_KEY
 }&lang=es&q=`;
 
-
+//Dark Mode
 const darkTheme = createTheme({
   typography: {
     fontFamily: 'Poppins, sans-serif',
@@ -33,6 +33,7 @@ const darkTheme = createTheme({
   },
 });
 
+//Light Mode
 const lightTheme = createTheme({
   typography: {
     fontFamily: 'Poppins, sans-serif',
@@ -51,7 +52,10 @@ const lightTheme = createTheme({
   },
 });
 
+//Main Component
 export default function App() {
+
+  //States definition
   const [city, setCity] = useState("");
   const [error, setError] = useState({
     error: false,
@@ -59,6 +63,8 @@ export default function App() {
   });
   const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState('dark');
+
+  //Function to change the theme
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
@@ -74,6 +80,7 @@ export default function App() {
     uvIndex: 0,
   });
 
+  //Function to send form
   const onSubmit = async (e) => {
     e.preventDefault();
     setError({ error: false, message: "" });
@@ -82,6 +89,7 @@ export default function App() {
     try {
       if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
 
+      //Making the request to the weather API
       const res = await fetch(API_WEATHER + city);
       const data = await res.json();
 
@@ -91,6 +99,7 @@ export default function App() {
 
       console.log(data);
 
+      //Saving weather information in the state
       setWeather({
         city: data.location.name,
         country: data.location.country,
@@ -109,7 +118,7 @@ export default function App() {
     }
   };
   
-
+//Renderizing components
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -150,7 +159,7 @@ export default function App() {
             id="city"
             label="City"
             variant="outlined"
-            size="small"
+            size="small"react
             required
             value={city}
             onChange={(e) => setCity(e.target.value)}
