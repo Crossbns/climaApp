@@ -81,42 +81,42 @@ export default function App() {
   });
 
   //Function to send form
-  const onSubmit = async () => {
-    setError({ error: false, message: "" });
-    setLoading(true);
-  
-    try {
-      if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
-  
-      //Making the request to the weather API
-      const res = await fetch(API_WEATHER + city);
-      const data = await res.json();
-  
-      if (data.error) {
-        throw { message: data.error.message };
-      }
-  
-      console.log(data);
-  
-      //Saving weather information in the state
-      setWeather({
-        city: data.location.name,
-        country: data.location.country,
-        temperature: data.current.temp_c,
-        conditionText: data.current.condition.text,
-        icon: data.current.condition.icon,
-        windSpeed: data.current.wind_kph,
-        uvIndex: data.current.uv,
-      });
-      
-    } catch (error) {
-      console.log(error);
-      setError({ error: true, message: error.message });
-    } finally {
-      setLoading(false);
+ const onSubmit = async () => {
+  setError({ error: false, message: "" });
+  setLoading(true);
+
+  try {
+    if (!city.trim()) throw { message: "El campo ciudad es obligatorio" };
+
+    //Making the request to the weather API
+    const res = await fetch(API_WEATHER + city);
+    const data = await res.json();
+
+    if (data.error) {
+      throw { message: data.error.message };
     }
-  };
-  
+
+    console.log(data);
+
+    //Saving weather information in the state
+    setWeather({
+      city: data.location.name,
+      country: data.location.country,
+      temperature: data.current.temp_c,
+      conditionText: data.current.condition.text,
+      icon: data.current.condition.icon,
+      windSpeed: data.current.wind_kph,
+      uvIndex: data.current.uv,
+    });
+    
+  } catch (error) {
+    console.log(error);
+    setError({ error: true, message: error.message });
+  } finally {
+    setLoading(false);
+  }
+};
+
   
 //Renderizing components
   return (
