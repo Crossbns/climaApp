@@ -140,15 +140,7 @@ export default function App() {
       </Box>
   
       <Container maxWidth="xs" sx={{ mt: 2 }}>
-        <Typography
-          variant="h3"
-          component="h1"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}
-        >
-          Weather App
-        </Typography>
+
         <Box
           sx={{ display: 'grid', gap: 2 }}
           component="form"
